@@ -35,10 +35,9 @@ class AuthController extends Controller
         $user->name = $request->name;
         $user->username = $request->username;
         $user->email = $request->email;
-        ////////////////  $user->verification_token = uniqid();
+        $user->verification_token = uniqid();
         $user->password = bcrypt($request->password);
         $user->save();
-
         $uploadedAvatar = $this->uploadAvatar($request->file('avatar'));
         $user->image()->create([
             'image_path'=> $uploadedAvatar,
